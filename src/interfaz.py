@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter.scrolledtext import ScrolledText
 
+from procesamiento import DocumentProcessor
+from extraccion import DocumentExporter
+
 class Application:
     def __init__(self, root):
         self.root = root
@@ -31,7 +34,7 @@ class Application:
         self.processor.load_document()
 
         # Aquí se define un conjunto de palabras clave, aunque podrían configurarse
-        keywords = ["Sección 1", "Sección 2"]  # Reemplazar por palabras clave adecuadas
+        keywords = ["OBRA CIVIL", "IMPLANTACIÓN", "DEMOLICIONES Y ACTUACIONES PREVIAS", "MOVIMIENTO DE TIERRA", "CIMENTACIÓN y MUROS", "SANEAMIENTO", "ESTRUCTURAS", "CUBIERTAS", "FACHADAS Y PARTICIONES", "SOLERAS", "PAVIMENTOS y SOLADOS", "REVESTIMIENTOS y ACABADOS", "ALBAÑILERÍA Y DIVISIONES INTERIORES", "CARPINTERIA PUERTAS Y VENTANAS", "VIDRIERIA Y CERRAJERIA", "FONTANERÍA Y APARATOS SANITARIOS", "URBANIZACIÓN DE LA PARCELA", "MEDIDAS DE PROTECCIÓN PASIVA CONTRA INCENDIOS", "OBRA CIVIL EDAR", "INSTALACION DE TOMA DE TIERRA", "AYUDAS E IMPREVISTOS", "CONTROL DE CALIDAD", "SEGURIDAD Y SALUD", "GESTION DE RESIDUOS", "COORDINACIÓN DE TRABAJOS CON OTROS CONTRATISTAS", "REMATES Y AYUDAS", "CLIMATIZACION y VENTILACION", "ELECTRICIDAD", "FLUIDOS", "FRIO", "PROTECCION CONTRA INCENDIOS"]  # Reemplazar por palabras clave adecuadas
         self.processor.identify_sections(keywords)
         self.sections = self.processor.get_sections()
 
