@@ -33,7 +33,9 @@ Las palabras clave para la búsqueda se cargan desde un archivo de texto externo
 La configuración de la aplicación se realiza a través de variables de entorno definidas en un archivo .env. Estas incluyen:
 
 `INPUT_FILE`: Ruta al archivo Word que se desea procesar.
+
 `OUTPUT_FOLDER`: Carpeta donde se guardarán los archivos exportados.
+
 `KEYWORDS_FILE`: Archivo de texto que contiene las palabras clave, una por línea.
 
 ## Ejecución
