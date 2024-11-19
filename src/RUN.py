@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)  # Logger específico para este script
 
 try:
     # Rutas del archivo del documento y de las keywords
-    file_path = config("INPUT_FILE")
+    input_dir = config("INPUT_FOLDER")
     output_dir = config("OUTPUT_FOLDER")
     keywords_file_path = config("KEYWORDS_FILE")
 
@@ -24,11 +24,13 @@ except Exception as e:
 
 
 def load_keywords(file_path):
-    """Carga las keywords desde un archivo de texto."""
+    logger.debug(f"Intentando abrir el archivo: {file_path}")
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
+            logger.debug(f"Archivo abierto exitosamente: {file_path}")
             keywords = [line.strip() for line in file if line.strip()]
-        return keywords
+            logger.info(f"Keywords cargadas: {keywords}")
+            return keywords
     except Exception as e:
         logger.exception(f"Error al cargar las keywords desde {file_path}: {e}")
         return []
@@ -40,6 +42,8 @@ if not keywords:
     logger.error("No se pudieron cargar las keywords. Finalizando.")
 else:
     try:
+        for filename in os.listdir(input_dir):
+            file_path = os.path.join(input_dir, filename)
         processor = DocumentProcessor(file_path)
         processor.load_document()
         processor.identify_sections(keywords)

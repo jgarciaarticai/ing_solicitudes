@@ -1,3 +1,2 @@
 python-docx
-pywin32
 python-decouple

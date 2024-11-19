@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Comando por defecto para ejecutar tu aplicación (modifica según sea necesario)
-CMD ["python", "src/interfaz.py"]
+CMD ["python", "src/RUN.py"]

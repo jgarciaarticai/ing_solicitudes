@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src:/app/src
+      - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/config:/app/config
+      - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/data:/app/data
+      - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/logs:/app/logs
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  ingenieria:
