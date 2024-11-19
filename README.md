@@ -10,10 +10,10 @@ A través del procesamiento de documentos Word, se detectan títulos en el índi
 2. **Extracción de Contenido por Estilo:**
 Utiliza los estilos aplicados en los documentos Word para determinar de manera precisa dónde comienzan y terminan las secciones.
 
-3: **Exportación Automatizada:**
+3. **Exportación Automatizada:**
 Las secciones identificadas se exportan en documentos Word separados, nombrados automáticamente según el título correspondiente.
 
-4: **Gestión de Keywords:**
+4. **Gestión de Keywords:**
 Las palabras clave para la búsqueda se cargan desde un archivo de texto externo, facilitando la actualización y personalización sin necesidad de modificar el código.
 
 ## Componentes Clave
