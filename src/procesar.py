@@ -58,17 +58,17 @@ class DocumentProcessor:
         try:
             content = []
             capturing = False
-
             self.logger.info(f"Buscando título '{title}' en el documento...")
 
             for para in self.document.paragraphs:
                 text = para.text.strip()
                 style = para.style.name
 
-                # Iniciar captura si encontramos el título con el estilo de título
+                # Iniciar captura si encontramos el título con el estilo adecuado
                 if title in text and style.startswith("ARTICA") and not capturing:
                     capturing = True
                     self.logger.info(f"Título encontrado: '{text}' con estilo {style}")
+                    content.append({"type": "text", "content": text})
                     continue
 
                 # Detener la captura si encontramos otro título con estilo de título
@@ -76,17 +76,26 @@ class DocumentProcessor:
                     if style.startswith("ARTICA") and title not in text:
                         self.logger.info(f"Fin de la sección para el título '{title}' detectado.")
                         break
-                    content.append(text)
+
+                    # Agregar contenido del párrafo
+                    if text:
+                        content.append({"type": "text", "content": text})
+
+                    # Detectar imágenes en el párrafo
+                    for run in para.runs:
+                        if run._element.xpath(".//w:drawing"):
+                            self.logger.info("Imagen encontrada.")
+                            content.append({"type": "image", "content": run})
 
             if capturing:
-                self.logger.info(f"Contenido capturado para '{title}': {content[:5]}...")
+                self.logger.info(f"Contenido capturado para '{title}': {content[:2]}...")
             else:
                 self.logger.warning(f"No se pudo capturar contenido para '{title}'.")
 
-            return "\n".join(content)
+            return content
         except Exception as e:
             self.logger.exception(f"Error al buscar contenido para '{title}': {e}")
-            return ""
+            return []
 
     def identify_sections(self, keywords):
         """Identifica las secciones basadas en el índice y recupera el contenido correspondiente."""
