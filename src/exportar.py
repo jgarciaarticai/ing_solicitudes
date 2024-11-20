@@ -43,12 +43,18 @@ class DocumentExporter:
         except Exception as e:
             self.logger.exception(f"Error al exportar la sección '{title}': {e}")
 
-    def _add_formatted_text(self, para, text):
+
+    def _add_formatted_text(self, para, text_elements):
         """Agrega texto con formato al párrafo."""
-        run = para.add_run(text)
-        run.bold = True if "bold" in text else False
-        run.italic = True if "italic" in text else False
-        run.underline = True if "underline" in text else False
+        try:
+            for element in text_elements:
+                run = para.add_run(element["text"])
+                run.bold = element.get("bold", False)
+                run.italic = element.get("italic", False)
+                run.underline = element.get("underline", False)
+        except Exception as e:
+            self.logger.exception(f"Error al agregar texto con formato: {e}")
+
 
     def _add_image_to_document(self, doc, run):
         """Agrega una imagen extraída a un documento."""

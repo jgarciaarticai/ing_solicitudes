@@ -68,7 +68,7 @@ class DocumentProcessor:
                 if title in text and style.startswith("ARTICA") and not capturing:
                     capturing = True
                     self.logger.info(f"Título encontrado: '{text}' con estilo {style}")
-                    content.append({"type": "text", "content": text})
+                    content.append({"type": "text", "content": [{"text": text}]})
                     continue
 
                 # Detener la captura si encontramos otro título con estilo de título
@@ -77,9 +77,18 @@ class DocumentProcessor:
                         self.logger.info(f"Fin de la sección para el título '{title}' detectado.")
                         break
 
-                    # Agregar contenido del párrafo
-                    if text:
-                        content.append({"type": "text", "content": text})
+                    # Capturar texto con formato
+                    paragraph_content = []
+                    for run in para.runs:
+                        paragraph_content.append({
+                            "text": run.text,
+                            "bold": run.bold,
+                            "italic": run.italic,
+                            "underline": run.underline,
+                        })
+
+                    if paragraph_content:
+                        content.append({"type": "text", "content": paragraph_content})
 
                     # Detectar imágenes en el párrafo
                     for run in para.runs:
