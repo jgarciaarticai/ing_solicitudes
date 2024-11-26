@@ -1,3 +1,5 @@
 python-docx
 python-decouple
 PILLOW
+pandas
+openpyxl

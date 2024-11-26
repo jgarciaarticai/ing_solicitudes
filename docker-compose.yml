@@ -10,7 +10,8 @@ services:
       - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/config:/app/config
       - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/data:/app/data
       - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/logs:/app/logs
-
+    stdin_open: true
+    tty: true
 networks:
   app-network:
     driver: bridge
