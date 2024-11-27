@@ -7,9 +7,9 @@ services:
       - "5000:5000"
     volumes:
       - ./src:/app/src
-      - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/config:/app/config
-      - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/data:/app/data
-      - C:/Users/jgarcia/OneDrive - ARTICA INGENIERÍA E INNOVACIÓN/Documentos/5. Ingenieria solicitudes/logs:/app/logs
+      - ./config:/app/config
+      - ./data:/app/data
+      - ./logs:/app/logs
     stdin_open: true
     tty: true
 networks:
