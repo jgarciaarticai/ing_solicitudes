@@ -5,6 +5,7 @@ from logging_config import setup_logging
 from procesar import DocumentProcessor
 from exportar import DocumentExporter
 from organizar import DocumentOrganizer
+from insertar import ContentInserter
 
 # Configuración del logging
 log_file_path = setup_logging()
@@ -60,12 +61,16 @@ try:
         if sections:
             exporter = DocumentExporter(sections, output_dir)
             exporter.export_all_sections(export_format="docx")
+        
+        inserter = ContentInserter(input_dir=output_dir, config_dir="config", exporter=exporter)
+        proyecto_menor = input("¿Es un proyecto menor? (s/n): ").strip().lower() == 's'
+        inserter.process_files(mapping_file=map_file_path, proyecto_menor=proyecto_menor)
 
     logger.info("Procesamiento y exportación completados exitosamente.")
 
     # Organizar documentos
-    organizer = DocumentOrganizer(output_dir)
-    organizer.organize_documents(map_file_path, cliente_name)  # Aquí se usa cliente_base_path
+    #organizer = DocumentOrganizer(output_dir)
+    #organizer.organize_documents(map_file_path, cliente_name)  # Aquí se usa cliente_base_path
 
     logger.info("Documentos organizados en carpetas correctamente.")
 

@@ -94,7 +94,8 @@ class DocumentProcessor:
                     for run in para.runs:
                         if run._element.xpath(".//w:drawing"):
                             self.logger.info("Imagen encontrada.")
-                            content.append({"type": "image", "content": run})
+                            content.append({"type": "image", "content": run})  # Guardar el `Run` de la imagen
+
 
             if capturing:
                 self.logger.info(f"Contenido capturado para '{title}': {content[:2]}...")
@@ -124,7 +125,6 @@ class DocumentProcessor:
                 if content:
                     self.sections[title] = content
                     self.logger.info(f"Sección encontrada: {title}")
-                    self.logger.info(f"Contenido completo:\n{content[:200]}...\n")
                 else:
                     self.logger.warning(f"No se encontró contenido para el título: {title}")
 
