@@ -15,6 +15,7 @@ class ContentInserter:
         self.exporter = exporter  # Instancia de DocumentExporter
         self.logger = logging.getLogger(__name__)
 
+
     def process_files(self, mapping_file, proyecto_menor):
         """Procesa todos los archivos .docx en la carpeta de origen."""
         try:
@@ -57,6 +58,7 @@ class ContentInserter:
         except Exception as e:
             self.logger.exception(f"Error al procesar archivos: {e}")
 
+
     def _insert_content(self, doc_origen_path, doc_destino_path):
         """Inserta el contenido del documento de origen en el documento de destino."""
         try:
@@ -96,6 +98,7 @@ class ContentInserter:
 
         except Exception as e:
             self.logger.exception(f"Error al insertar contenido de '{doc_origen_path}' en '{doc_destino_path}': {e}")
+
 
     def _insert_text_and_images(self, content, doc_destino, paragraph):
         """Inserta texto e imágenes después de un párrafo específico."""

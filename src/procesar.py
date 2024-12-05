@@ -10,6 +10,7 @@ class DocumentProcessor:
         self.document = None
         self.sections = {}
 
+
     def load_document(self):
         """Carga el documento Word y lo prepara para el procesamiento."""
         try:
@@ -18,6 +19,7 @@ class DocumentProcessor:
         except Exception as e:
             self.logger.exception(f"Error al cargar el documento: {e}")
             raise
+
 
     def extract_index_titles(self, keywords):
         """Busca títulos en el índice que contengan palabras clave y extrae el número de página."""
@@ -52,6 +54,7 @@ class DocumentProcessor:
         except Exception as e:
             self.logger.exception(f"Error al analizar el índice: {e}")
             return []
+
 
     def find_section_content(self, title):
         """Busca el contenido de una sección basándose en su título y estilo."""
@@ -107,6 +110,7 @@ class DocumentProcessor:
             self.logger.exception(f"Error al buscar contenido para '{title}': {e}")
             return []
 
+
     def identify_sections(self, keywords):
         """Identifica las secciones basadas en el índice y recupera el contenido correspondiente."""
         try:
@@ -131,6 +135,7 @@ class DocumentProcessor:
             self.logger.info(f"Secciones identificadas: {len(self.sections)}")
         except Exception as e:
             self.logger.exception(f"Error al identificar secciones: {e}")
+
 
     def get_sections(self):
         """Devuelve las secciones identificadas para revisión o exportación."""

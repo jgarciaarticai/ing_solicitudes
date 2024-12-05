@@ -59,7 +59,6 @@ class DocumentExporter:
                     para = new_doc.add_paragraph()  # Crear un párrafo para la imagen
                     self._add_image_to_document(para, image_run)
 
-
             # Guardar archivo
             sanitized_title = re.sub(r'[\\/*?:"<>|]', "", title)  # Evitar caracteres no válidos en nombres de archivo
             file_name = f"{self.output_dir}/{sanitized_title}.{export_format}"
@@ -67,8 +66,6 @@ class DocumentExporter:
             self.logger.info(f"Documento exportado: {file_name}")
         except Exception as e:
             self.logger.exception(f"Error al exportar la sección '{title}': {e}")
-
-
 
 
     def _add_formatted_text(self, para, text_elements):
@@ -88,6 +85,7 @@ class DocumentExporter:
                     self.logger.warning(f"Formato inesperado en texto: {element}")
         except Exception as e:
             self.logger.exception(f"Error al agregar texto con formato: {e}")
+
 
     def _add_image_to_document(self, paragraph, image_run):
         """Agrega una imagen extraída desde un objeto `Run` al párrafo."""
@@ -118,7 +116,6 @@ class DocumentExporter:
 
         except Exception as e:
             self.logger.exception(f"Error al agregar imagen al documento: {e}")
-
 
 
     def export_all_sections(self, export_format="docx"):

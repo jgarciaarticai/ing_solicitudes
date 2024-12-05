@@ -23,6 +23,7 @@ except Exception as e:
     logger.exception(f"Error al leer las variables de entorno: {e}")
     raise
 
+
 def load_keywords(file_path):
     """Carga las palabras clave desde un archivo."""
     logger.debug(f"Intentando abrir el archivo: {file_path}")
