@@ -70,8 +70,8 @@ try:
     logger.info("Procesamiento y exportación completados exitosamente.")
 
     # Organizar documentos
-    #organizer = DocumentOrganizer(output_dir)
-    #organizer.organize_documents(map_file_path, cliente_name)  # Aquí se usa cliente_base_path
+    organizer = DocumentOrganizer(output_dir)
+    organizer.organize_documents(map_file_path, cliente_name, proyecto_menor)  # Aquí se usa cliente_base_path
 
     logger.info("Documentos organizados en carpetas correctamente.")
 
